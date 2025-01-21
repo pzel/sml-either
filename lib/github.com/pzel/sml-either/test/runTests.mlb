@@ -1,0 +1,10 @@
+(* basis *)
+$(SML_LIB)/basis/basis.mlb
+
+(* SUT *)
+../either.mlb
+
+(* tests *)
+check.sml
+eitherTest.sml
+
