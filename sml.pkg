@@ -1,4 +1,4 @@
-package github.com/pzel/either
+package github.com/pzel/sml-either
 
 require {
 }
