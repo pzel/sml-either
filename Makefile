@@ -9,5 +9,6 @@ clean:
 
 test: polymlb $(shell find $(LIBDIR) | grep *.sql)
 	rm -f Either.results
-	polymlb $(MLB_PATH) -output bin/runTests $(LIBDIR)/test/runTests.mlb && ./bin/runTests && (tail -n1 ./Either.results | grep -v failures)
+	mkdir -p bin
+	polymlb $(MLB_PATH) -output runTests $(LIBDIR)/test/runTests.mlb && ./runTests && (tail -n1 ./Either.results | grep -v failures)
 
