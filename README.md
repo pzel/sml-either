@@ -1,8 +1,11 @@
 # 2015 002 Addition of Either module
 
-This is the Either module added as an [smlpkg](https://github.com/diku-dk/smlpkg) package.
-
-https://github.com/SMLFamily/BasisLibrary/wiki/2015-002-Addition-of-Either-module
+This is John Reppy's Either module added as an
+[smlpkg](https://github.com/diku-dk/smlpkg) package. No original code has been
+introduced, it's simply the implementation that was proposed in the [original
+BasisLibrary 2015-002
+submission](https://github.com/SMLFamily/BasisLibrary/wiki/2015-002-Addition-of-Either-module),
+but packaged to be accessible to the wider smlpkg ecosystem.
 
 
 ## How to include this in your sml project
