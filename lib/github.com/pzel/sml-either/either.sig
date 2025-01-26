@@ -25,10 +25,16 @@
  * Reference code for SML Basis Library Proposal 2015-002.
  *)
 
+signature EITHER_CONS =
+  sig
+    datatype ('left, 'right) either = INL of 'left | INR of 'right
+end
+
 signature EITHER =
   sig
 
-    datatype ('left, 'right) either = INL of 'left | INR of 'right
+    include EITHER_CONS
+    structure Cons : EITHER_CONS;
 
     val isLeft : ('left, 'right) either -> bool
     val isRight : ('left, 'right) either -> bool

@@ -25,10 +25,15 @@
  * Reference code for SML Basis Library Proposal 2015-002.
  *)
 
+structure EitherCons :> EITHER_CONS =
+struct
+    datatype ('left, 'right) either = INL of 'left | INR of 'right
+end
+
 structure Either : EITHER =
   struct
-
-    datatype ('left, 'right) either = INL of 'left | INR of 'right
+    structure Cons = EitherCons;
+    open EitherCons;
 
     fun isLeft (INL _) = true
       | isLeft (INR _) = false
