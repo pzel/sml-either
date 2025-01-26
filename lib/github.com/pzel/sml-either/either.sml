@@ -23,6 +23,7 @@
  * ============================================================================
  *
  * Reference code for SML Basis Library Proposal 2015-002.
+ * Additions Copyright (c) 2025 Simon Zelazny
  *)
 
 structure EitherCons :> EITHER_CONS =
@@ -76,5 +77,11 @@ structure Either : EITHER =
           in
             lp (sums, [], [])
           end
+
+    fun bindRight onRight (INR v) = onRight v
+      | bindRight onRight (INL l) = INL l
+
+    fun bindLeft onLeft (INL v) = onLeft v
+      | bindLeft onLeft (INR r) = INR r
 
   end

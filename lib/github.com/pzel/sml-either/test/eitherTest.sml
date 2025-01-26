@@ -68,7 +68,29 @@ structure Tests =
 	  test "partition-6" (expect
 		(fn ([13, 42], [17, 99]) => true | _ => false)
 		(fn () => E.partition [INL 13, INR 17, INR 99, INL 42]));
-	  ()))
+
+    test "bindRight-1" (expect (fn (INR 1) => true | _ => false)
+                               (fn () => E.bindRight (fn x => INR (x + 1)) (INR 0)));
+
+    test "bindRight-2" (expect (fn (INL "leftval") => true | _ => false)
+                               (fn () => E.bindRight (fn x => INL "leftval") (INR 0)));
+
+    test "bindRight-2" (expect (fn (INL "original-leftval") => true | _ => false)
+                               (fn () => E.bindRight (fn x => INL "unused") (INL "original-leftval")));
+
+
+    test "bindLeft-1" (expect (fn (INL 1) => true | _ => false)
+                               (fn () => E.bindLeft (fn x => INL (x + 1)) (INL 0)));
+
+    test "bindLeft-2" (expect (fn (INR "rightval") => true | _ => false)
+                               (fn () => E.bindLeft (fn x => INR "rightval") (INL 0)));
+
+    test "bindLeft-2" (expect (fn (INR "original-rightval") => true | _ => false)
+                               (fn () => E.bindLeft (fn x => INR "unused") (INR "original-rightval")));
+
+
+    ()))
+
 
     fun run () = runSuite "Either" opensuite
     end (* local *)

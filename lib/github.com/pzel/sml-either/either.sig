@@ -23,6 +23,7 @@
  * ============================================================================
  *
  * Reference code for SML Basis Library Proposal 2015-002.
+ * Additions Copyright (c) 2025 Simon Zelazny
  *)
 
 signature EITHER_CONS =
@@ -63,5 +64,11 @@ signature EITHER =
 
     val appLeft  : ('left -> unit) -> ('left, 'right) either -> unit
     val appRight : ('right -> unit) -> ('left, 'right) either -> unit
+
+  (* added 25-01-26, Simon Zelazny *)
+  val bindRight : ('a -> ('left, 'b) either) -> ('left, 'a) either -> ('left, 'b) either
+
+  val bindLeft : ('a -> ('b, 'right) either) -> ('a, 'right) either -> ('b, 'right) either
+
 
   end
