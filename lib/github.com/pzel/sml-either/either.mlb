@@ -1,5 +1,6 @@
 local
   $(SML_LIB)/basis/basis.mlb
+  either-cons.sig
   either.sig
   either.sml
 in

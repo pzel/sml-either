@@ -26,16 +26,11 @@
  * Additions Copyright (c) 2025 Simon Zelazny
  *)
 
-signature EITHER_CONS =
-  sig
-    datatype ('left, 'right) either = INL of 'left | INR of 'right
-end
-
 signature EITHER =
   sig
 
     include EITHER_CONS
-    structure Cons : EITHER_CONS;
+    structure Cons : EITHER_CONS
 
     val isLeft : ('left, 'right) either -> bool
     val isRight : ('left, 'right) either -> bool

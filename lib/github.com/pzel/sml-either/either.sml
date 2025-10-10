@@ -33,8 +33,8 @@ end
 
 structure Either : EITHER =
   struct
-    structure Cons = EitherCons;
-    open EitherCons;
+    structure Cons = EitherCons
+    open EitherCons
 
     fun isLeft (INL _) = true
       | isLeft (INR _) = false
@@ -59,8 +59,8 @@ structure Either : EITHER =
             | INR x => fr x
           (* end case *))
 
-    fun appLeft fl sum = app (fl, fn x => ()) sum
-    fun appRight fr sum = app (fn x => (), fr) sum
+    fun appLeft fl sum = app (fl, fn _ => ()) sum
+    fun appRight fr sum = app (fn _ => (), fr) sum
 
     fun fold (fl, fr) init sum = (case sum
            of INL x => fl (x, init)
@@ -72,16 +72,16 @@ structure Either : EITHER =
 
     fun partition sums = let
           fun lp ([], ls, rs) = (List.rev ls, List.rev rs)
-            | lp ((INL x)::sums, ls, rs) = lp (sums, x::ls, rs)
-            | lp ((INR x)::sums, ls, rs) = lp (sums, ls, x::rs)
+            | lp ((INL x)::sums', ls, rs) = lp (sums', x::ls, rs)
+            | lp ((INR x)::sums', ls, rs) = lp (sums', ls, x::rs)
           in
             lp (sums, [], [])
           end
 
     fun bindRight onRight (INR v) = onRight v
-      | bindRight onRight (INL l) = INL l
+      | bindRight _ (INL l) = INL l
 
     fun bindLeft onLeft (INL v) = onLeft v
-      | bindLeft onLeft (INR r) = INR r
+      | bindLeft _ (INR r) = INR r
 
   end

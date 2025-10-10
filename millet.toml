@@ -1,0 +1,3 @@
+version = 1
+[workspace]
+root = "lib/github.com/pzel/sml-either/either.mlb"
