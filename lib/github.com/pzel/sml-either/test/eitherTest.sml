@@ -89,6 +89,13 @@ structure Tests =
                                (fn () => E.bindLeft (fn x => INR "unused") (INR "original-rightval")));
 
 
+    test "fromOption-1" (expect (fn (INL 0) => true | _ => false)
+                                (fn () => E.fromOption 0 NONE));
+
+    test "fromOption-2" (expect (fn (INR 2) => true | _ => false)
+                                (fn () => E.fromOption 0 (SOME 2)));
+
+
     ()))
 
 

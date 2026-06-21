@@ -84,4 +84,6 @@ structure Either : EITHER =
     fun bindLeft onLeft (INL v) = onLeft v
       | bindLeft _ (INR r) = INR r
 
+    fun fromOption lval opt = case opt of SOME r => INR r | NONE => INL lval
+
   end

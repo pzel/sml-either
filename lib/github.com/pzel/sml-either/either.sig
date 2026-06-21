@@ -65,5 +65,7 @@ signature EITHER =
 
   val bindLeft : ('a -> ('b, 'right) either) -> ('a, 'right) either -> ('b, 'right) either
 
+  (* added 21-06-2026, Simon Zelazny *)
+  val fromOption : 'l -> 'r option -> ('l, 'r) either
 
   end

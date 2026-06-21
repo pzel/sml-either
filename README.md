@@ -1,5 +1,77 @@
 # 2015 002 Addition of Either module + explicit openable constrcutor module
 
+```sml
+
+(* use this via open Either.Cons *)
+signature EITHER_CONS =
+  sig
+    datatype ('left, 'right) either = INL of 'left | INR of 'right
+end
+
+signature EITHER =
+sig
+  include EITHER_CONS
+  structure Cons : EITHER_CONS
+
+  val isLeft : ('left, 'right) either -> bool
+  val isRight : ('left, 'right) either -> bool
+
+  val asLeft : ('left, 'right) either -> 'left option
+  val asRight : ('left, 'right) either -> 'right option
+
+  val map  : ('ldom -> 'lrng) * ('rdom -> 'rrng)
+           -> ('ldom, 'rdom) either
+           -> ('lrng, 'rrng) either
+
+  val app  : ('left -> unit) * ('right -> unit)
+           -> ('left, 'right) either
+           -> unit
+
+  val fold : ('left * 'b -> 'b) * ('right * 'b -> 'b)
+           -> 'b
+           -> ('left, 'right) either
+           -> 'b
+
+  val proj : ('a, 'a) either -> 'a
+
+  val partition : (('left, 'right) either) list
+               -> ('left list * 'right list)
+
+  val mapLeft  : ('ldom -> 'lrng)
+              -> ('ldom, 'rdom) either
+              -> ('lrng, 'rdom) either
+
+  val mapRight : ('rdom -> 'rrng)
+              -> ('ldom, 'rdom) either
+              -> ('ldom, 'rrng) either
+
+  val appLeft  : ('left -> unit)
+              -> ('left, 'right) either
+              -> unit
+
+  val appRight : ('right -> unit)
+              -> ('left, 'right) either
+              -> unit
+
+  val bindRight : ('a -> ('left, 'b) either)
+               -> ('left, 'a) either
+               -> ('left, 'b) either
+
+  val bindLeft : ('a -> ('b, 'right) either)
+              -> ('a, 'right) either
+              -> ('b, 'right) either
+
+  val fromOption : 'l
+                -> 'r option
+                -> ('l, 'r) either
+
+end
+
+
+```
+
+## Background
+
 This project started originally as John Reppy's Either module added as an
 [smlpkg](https://github.com/diku-dk/smlpkg) package. Based on the [original
 BasisLibrary 2015-002
@@ -64,4 +136,3 @@ lib/github.com/pzel/sml-either/either.mlb
  - [ ] Run tests & build under mlton
  - [x] Run tests & build under poly(mlb)
  - [ ] Set up CI
-
