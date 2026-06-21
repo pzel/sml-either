@@ -1,9 +1,7 @@
 local
   $(SML_LIB)/basis/basis.mlb
   either-cons.sig
+in
   either.sig
   either.sml
-in
-  signature EITHER
-  structure Either
 end
